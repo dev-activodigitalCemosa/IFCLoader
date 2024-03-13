@@ -48,13 +48,13 @@ ifcLoader.settings.wasm = {
   path: "https://unpkg.com/web-ifc@0.0.44/",
 };
 
-const disposer = new OBC.Disposer(viewer);
+//const disposer = new OBC.Disposer(viewer);
 const highlighter = new OBC.FragmentHighlighter(viewer);
 highlighter.setup()
 
 const propertiesProcessor2 = new OBC.IfcPropertiesProcessor(viewer)
 const hider = new OBC.FragmentHider(viewer);
-await hider.loadCached();
+hider.loadCached();
 
 
 let storeysGui = new dat.GUI({ autoPlace: true });
@@ -80,7 +80,6 @@ ifcLoader.onIfcLoaded.add(async model => {
   classifier.byStorey(model);
   classifier.byEntity(model);
   
-  console.log(model);
   const classifications = classifier.get();
   const storeyNames = Object.keys(classifications.storeys).sort();
 
@@ -207,7 +206,6 @@ ifcLoader.onIfcLoaded.add(async model => {
           if (inputElement !== null) {
             inputElement.click();
           } else {
-            console.error('No se encontró ningún elemento de entrada (input) dentro del controlador.');
           }
 
         })
@@ -223,15 +221,14 @@ ifcLoader.onIfcLoaded.add(async model => {
   propertiesProcessor2.process(model)
   highlighter.events.select.onHighlight.add((selection) => {
     const fragmentID = Object.keys(selection)[0]
-    console.log(selection);
     const expressID = Number([...selection[fragmentID]][0])
     propertiesProcessor2.renderProperties(model, expressID)
     storeysGui.folders.forEach(folder1 => {
       folder1.folders.forEach(folder2 => {
         folder2.controllers.forEach(controller => {
           var [parte1, parte2] = controller.property.split("_");
+          parte2;
           if (parte1 == expressID.toString()) {
-            console.log(controller);
             folder1.open();
             folder2.open();
             controller.domElement.style.backgroundColor = 'snow';
@@ -331,12 +328,12 @@ aislarSelectedButton.onClick.add(() => {
 
           primerElemento = [...conjunto][0];
           var [parte1, parte2] = controller.property.split("_");
+          parte2;
           if (parte1 !== primerElemento) {
             const inputElement = controller.domElement.querySelector('input');
             if (inputElement !== null && inputElement.checked == true) {
               inputElement.click();
             } else {
-              console.error('No se encontró ningún elemento de entrada (input) dentro del controlador.');
             }
           } else {
             checkbox.checked = true;
@@ -347,7 +344,6 @@ aislarSelectedButton.onClick.add(() => {
       });
     });
   } else {
-    console.log("El conjunto está vacío");
   }
 });
 
@@ -370,14 +366,12 @@ mostrarTodoButton.onClick.add(() => {
             if (inputElement !== null && inputElement.checked == false) {
               inputElement.click();
             } else {
-              console.error('No se encontró ningún elemento de entrada (input) dentro del controlador.');
             }
 
         });
       });
     });
 });
-
 
 
 viewer.ui.contextMenu.addChild(createButton, deleteButton, aislarSelectedButton, mostrarTodoButton);
