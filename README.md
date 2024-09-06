@@ -13,7 +13,7 @@ Pasos de Instalación
 - Clona el repositorio del proyecto desde GitHub:
 
 ```bash
-git clone https://github.com/tu_usuario/tu_repositorio.git
+git clone https://github.com/dev-activodigitalCemosa/IFCLoader.git
 ```
 - Navega al directorio del proyecto y ejecuta el siguiente comando para instalar las dependencias necesarias:
 
