@@ -1,4 +1,4 @@
-# Viosr IFC
+# Visor IFC
 
 ## Instalación
 
