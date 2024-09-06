@@ -41,7 +41,7 @@ El proyecto es una aplicación de visualización 3D de archivos IFC (Industry Fo
 
 ## Resumen de Funcionalidades
 
-Importación
+### Importación
 - __Cargar IFC:__ Permite cargar archivos IFC para integrarlos en el modelo 3D. Utiliza un botón para seleccionar el archivo y carga el modelo en la escena.
 - __Cargar Fragmentos:__(En desarrollo) Permite importar fragmentos preconvertidos desde un archivo ZIP, que incluye geometría y propiedades del modelo.
 - __Cargar Tiles:__ (En desarrollo) Carga archivos de "tiles" que contienen modelos convertidos para mejorar el rendimiento en modelos grandes.
